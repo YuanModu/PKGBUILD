@@ -41,11 +41,11 @@ build() {
 }
 
 package() {
-  cd "${srcdir}"
+  cd "${srcdir}/${pkgname}"
   mkdir -p "${pkgdir}"/usr/{bin,share/{licenses/eternallands,applications,pixmaps}}
-  install -m755 ${pkgname}/el.x86.linux.bin "${pkgdir}/usr/bin/el"
-  install -m644 ${pkgname}/eternal_lands_license.txt \
+  install -m755 el.x86.linux.bin "${pkgdir}/usr/bin/el"
+  install -m644 eternal_lands_license.txt \
     "${pkgdir}/usr/share/licenses/eternallands/LICENSE.source.txt"
-  install -m644 ${pkgname}/elc.png "${pkgdir}/usr/share/pixmaps/eternallands.png"
-  install -m644 eternallands.desktop "${pkgdir}/usr/share/applications/"
+  install -m644 elc.png "${pkgdir}/usr/share/pixmaps/eternallands.png"
+  install -m644 ../eternallands.desktop "${pkgdir}/usr/share/applications/"
 }
