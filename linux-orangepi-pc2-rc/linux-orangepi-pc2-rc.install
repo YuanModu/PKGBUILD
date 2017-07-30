@@ -1,8 +1,8 @@
 # arg 1:  the new package version
 # arg 2:  the old package version
 
-KERNEL_NAME=-armv8-rc
-KERNEL_VERSION=4.3.rc5-1-ARCH
+KERNEL_NAME=-orangepi-pc2-rc
+KERNEL_VERSION=4.13.0-rc2-1
 
 post_install () {
   # updating module dependencies
