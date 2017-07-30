@@ -21,7 +21,7 @@ source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
         'config'
         'linux.preset')
 md5sums=('ebf080ca271f88b88e784f62ffcc3ec0'
-         '6a7eb6770a3ebe30b3d427290d9bd3ac'
+         '2a0ba4be4bad3fad88274d2dbda08400'
          '25d8f6983c9a616946848c0e075a949c')
 
 prepare() {
