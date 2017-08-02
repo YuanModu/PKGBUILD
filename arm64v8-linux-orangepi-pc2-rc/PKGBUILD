@@ -4,7 +4,7 @@
 buildarch=8
 
 _rcver=4.13
-_rcrel=2
+_rcrel=3
 
 pkgbase=linux-orangepi-pc2-rc
 _srcname=linux-${_rcver}-rc${_rcrel}
