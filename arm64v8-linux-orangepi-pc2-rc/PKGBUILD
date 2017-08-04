@@ -11,7 +11,7 @@ _srcname=linux-${_rcver}-rc${_rcrel}
 _kernelname=${pkgbase#linux}
 _desc="AArch64 multi-platform (release candidate)"
 pkgver=${_rcver}.rc${_rcrel}
-pkgrel=1
+pkgrel=3
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -20,8 +20,8 @@ options=('!strip')
 source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
         'config'
         'linux.preset')
-md5sums=('ebf080ca271f88b88e784f62ffcc3ec0'
-         '2a0ba4be4bad3fad88274d2dbda08400'
+md5sums=('a5efd0d3b5b47f6a29652822793fce3b'
+         'cc499d34ce1ea2a63037d1384de0e496'
          '25d8f6983c9a616946848c0e075a949c')
 
 prepare() {
