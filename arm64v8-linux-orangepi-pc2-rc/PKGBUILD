@@ -20,8 +20,8 @@ options=('!strip')
 source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
         'config'
         'linux.preset')
-md5sums=('a5efd0d3b5b47f6a29652822793fce3b'
-         'cc499d34ce1ea2a63037d1384de0e496'
+md5sums=('0b451973dbd2581db9f44f5ddfbc593d'
+         '2e6fade86773b6a873ca3ee1264e4a15'
          '25d8f6983c9a616946848c0e075a949c')
 
 prepare() {
