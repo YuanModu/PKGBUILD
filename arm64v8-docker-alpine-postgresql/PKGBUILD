@@ -20,6 +20,6 @@ pkgver() {
 package() {
   cd "$srcdir/$pkgname"
   echo "$(pwd)"
-  install -Dm644 arm64v8/alpine/postgresql/build/postgresql@.service \
+  install -Dm644 arm64v8/alpine/postgresql/postgresql@.service \
     "$pkgdir/usr/lib/systemd/system/postgresql@.service"
 }
