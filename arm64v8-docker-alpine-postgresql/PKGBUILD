@@ -1,0 +1,25 @@
+# Maintainer (yuan_modu): Atila Satilmis <atila.satilmis@gmail.com>
+
+pkgname=docker-alpine-postgresql
+pkgver=r70.31dfa38
+pkgrel=1
+pkgdesc="Containerized postgresql"
+arch=('aarch64')
+license=('custom')
+url="http://www.example.com"
+depends=('docker')
+makedepends=('git')
+source=("$pkgname::git+https://github.com/YuanModu/Dockerfile.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd "$srcdir/$pkgname"
+  echo "$(pwd)"
+  install -Dm644 arm64v8/alpine/postgresql/postgresql@.service \
+    "$pkgdir/usr/lib/systemd/system/postgresql@.service"
+}
