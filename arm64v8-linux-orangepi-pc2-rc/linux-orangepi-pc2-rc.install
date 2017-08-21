@@ -2,7 +2,7 @@
 # arg 2:  the old package version
 
 KERNEL_NAME=-orangepi-pc2-rc
-KERNEL_VERSION=4.13.0-rc4-1
+KERNEL_VERSION=4.13.0-rc6-2
 
 post_install () {
   # updating module dependencies

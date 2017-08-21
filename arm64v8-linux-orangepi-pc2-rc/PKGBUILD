@@ -4,14 +4,14 @@
 buildarch=8
 
 _rcver=4.13
-_rcrel=4
+_rcrel=6
 
 pkgbase=linux-orangepi-pc2-rc
 _srcname=linux-${_rcver}-rc${_rcrel}
 _kernelname=${pkgbase#linux}
 _desc="AArch64 multi-platform (release candidate)"
 pkgver=${_rcver}.rc${_rcrel}
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -20,7 +20,7 @@ options=('!strip')
 source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
         'config'
         'linux.preset')
-md5sums=('0b451973dbd2581db9f44f5ddfbc593d'
+md5sums=('11d0adaa366837da267117bc33952633'
          '2e6fade86773b6a873ca3ee1264e4a15'
          '25d8f6983c9a616946848c0e075a949c')
 
