@@ -4,7 +4,7 @@
 buildarch=8
 
 pkgname=uboot-orangepi-pc2
-pkgver=2017.07
+pkgver=2017.11
 pkgrel=1
 pkgdesc="U-Boot for Orangepi PC2"
 arch=('aarch64')
@@ -18,7 +18,7 @@ source=("ftp://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
         '0001-ATF-set-fno-stack-protector.patch'
         'boot.txt'
         'mkscr')
-md5sums=('b74741e7a9ad1cf9a5bfa87302b80f2b'
+md5sums=('7848f6fd197e2c6ef2eb483dd5bd2858'
          'SKIP'
          '1d3b375fa978f3297d0fd3316f89e68a'
          'c3fef77aee64903f806c4f4357e5a2ab'
