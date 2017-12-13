@@ -3,7 +3,7 @@
 pkgname=docker-alpine-nginx
 pkgver=r105.19d89bf
 pkgrel=1
-pkgdesc="Containerized nginx"
+pkgdesc="Containerized Alpine nginx"
 arch=('aarch64')
 license=('custom')
 url="http://www.example.com"
@@ -20,6 +20,6 @@ pkgver() {
 package() {
   cd "$srcdir/$pkgname"
   echo "$(pwd)"
-  install -Dm644 arm64v8/alpine/nginx/nginx@.service \
-    "$pkgdir/usr/lib/systemd/system/nginx@.service"
+  install -Dm644 arm64v8/alpine/nginx/docker-alpine-nginx@.service \
+    "$pkgdir/usr/lib/systemd/system/docker-alpine-nginx@.service"
 }
