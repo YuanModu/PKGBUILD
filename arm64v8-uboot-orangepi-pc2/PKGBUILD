@@ -1,0 +1,56 @@
+# U-Boot: Orangepi PC2
+# Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
+
+buildarch=8
+
+pkgname=uboot-orangepi-pc2
+pkgver=2017.07
+pkgrel=1
+pkgdesc="U-Boot for Orangepi PC2"
+arch=('aarch64')
+url='http://www.denx.de/wiki/U-Boot/WebHome'
+license=('GPL')
+backup=('boot/boot.txt' 'boot/boot.scr')
+makedepends=('bc' 'dtc' 'git')
+install=${pkgname}.install
+source=("ftp://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
+        'git+https://github.com/apritzel/arm-trusted-firmware.git#branch=allwinner'
+        '0001-ATF-set-fno-stack-protector.patch'
+        'boot.txt'
+        'mkscr')
+md5sums=('b74741e7a9ad1cf9a5bfa87302b80f2b'
+         'SKIP'
+         '1d3b375fa978f3297d0fd3316f89e68a'
+         'c3fef77aee64903f806c4f4357e5a2ab'
+         '021623a04afd29ac3f368977140cfbfd')
+
+prepare() {
+  cd arm-trusted-firmware
+  git apply ../0001-ATF-set-fno-stack-protector.patch
+}
+
+build() {
+  unset CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
+
+  cd arm-trusted-firmware
+
+  make PLAT=sun50iw1p1 DEBUG=1 bl31
+  cp build/sun50iw1p1/debug/bl31.bin ../u-boot-${pkgver/rc/-rc}
+
+  cd ../u-boot-${pkgver/rc/-rc}
+
+  make distclean
+  make orangepi_pc2_defconfig
+  echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
+  make -j1 EXTRAVERSION=-${pkgrel}
+}
+
+package() {
+  cd u-boot-${pkgver/rc/-rc}
+
+  mkdir -p "${pkgdir}"/boot
+
+  cat spl/sunxi-spl.bin u-boot.itb > u-boot-sunxi-with-spl.bin
+  cp ../boot.txt ../mkscr u-boot-sunxi-with-spl.bin "${pkgdir}"/boot
+  tools/mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d "${pkgdir}"/boot/boot.txt "${pkgdir}"/boot/boot.scr
+}
