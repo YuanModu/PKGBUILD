@@ -19,6 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  install -Dm644 arm64v8/alpine/nsd/docker-alpine-nsd@.service \
+  install -Dm644 nsd/docker-alpine-nsd@.service \
     "$pkgdir/usr/lib/systemd/system/docker-alpine-nsd@.service"
 }

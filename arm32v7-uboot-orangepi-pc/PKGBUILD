@@ -1,0 +1,49 @@
+# U-Boot: Orangepi PC
+# Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
+
+buildarch=4
+
+pkgname=uboot-orangepi-pc
+pkgver=2019.01
+pkgrel=1
+pkgdesc="U-Boot for Orangepi PC"
+arch=('armv7')
+url='http://www.denx.de/wiki/U-Boot/WebHome'
+license=('GPL')
+backup=('boot/boot.txt' 'boot/boot.scr')
+makedepends=('bc' 'dtc' 'git')
+install=${pkgname}.install
+source=("ftp://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
+        'boot.txt'
+        'mkscr')
+md5sums=('0adbc6c755768f0b78a2a0decf0b253a'
+         'b0fed85eb30df21a68a20140cc539da7'
+         '021623a04afd29ac3f368977140cfbfd')
+
+prepare() {
+  cd u-boot-${pkgver/rc/-rc}
+}
+
+build() {
+  cd u-boot-${pkgver/rc/-rc}
+  
+  unset CFLAGS
+  unset CXXFLAGS
+  unset CPPFLAGS
+
+  make distclean
+  make orangepi_pc_defconfig
+  echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
+  make -j$(nproc) EXTRAVERSION=-${pkgrel}
+}
+
+package() {
+  cd u-boot-${pkgver/rc/-rc}
+
+  mkdir -p "${pkgdir}"/boot
+
+  cp u-boot-sunxi-with-spl.bin "${pkgdir}"/boot
+  cp ../{boot.txt,mkscr} "${pkgdir}"/boot
+
+  tools/mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d "${pkgdir}"/boot/boot.txt "${pkgdir}"/boot/boot.scr
+}

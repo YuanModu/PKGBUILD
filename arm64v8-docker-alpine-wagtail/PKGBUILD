@@ -19,7 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  echo "$(pwd)"
-  install -Dm644 arm64v8/alpine/wagtail/docker-alpine-wagtail@.service \
+  install -Dm644 wagtail/docker-alpine-wagtail@.service \
     "$pkgdir/usr/lib/systemd/system/docker-alpine-wagtail@.service"
 }
