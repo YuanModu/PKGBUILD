@@ -1,6 +1,6 @@
 # Maintainer (yuan_modu): Atila Satilmis <atila.satilmis@gmail.com>
 
-pkgname=docker-alpine-wagtail
+pkgname=docker-wagtail
 pkgver=r70.31dfa38
 pkgrel=1
 pkgdesc="Containerized wagtail"
@@ -19,6 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  install -Dm644 wagtail/docker-alpine-wagtail@.service \
-    "$pkgdir/usr/lib/systemd/system/docker-alpine-wagtail@.service"
+  install -Dm644 wagtail/docker-wagtail@.service \
+    "$pkgdir/usr/lib/systemd/system/docker-wagtail@.service"
 }

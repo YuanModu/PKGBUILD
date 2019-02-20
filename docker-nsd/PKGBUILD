@@ -1,9 +1,9 @@
 # Maintainer (yuan_modu): Atila Satilmis <atila.satilmis@gmail.com>
 
-pkgname=docker-alpine-nsd
+pkgname=docker-nsd
 pkgver=r109.d86cd1b
 pkgrel=1
-pkgdesc="Containerized Alpine NSD"
+pkgdesc="Containerized NSD"
 arch=('any')
 license=('custom')
 url="http://www.example.com"
@@ -19,6 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  install -Dm644 nsd/docker-alpine-nsd@.service \
-    "$pkgdir/usr/lib/systemd/system/docker-alpine-nsd@.service"
+  install -Dm644 nsd/docker-nsd@.service \
+    "$pkgdir/usr/lib/systemd/system/docker-nsd@.service"
 }
