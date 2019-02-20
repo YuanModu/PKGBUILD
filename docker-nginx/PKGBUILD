@@ -1,9 +1,9 @@
 # Maintainer (yuan_modu): Atila Satilmis <atila.satilmis@gmail.com>
 
-pkgname=docker-alpine-nginx
+pkgname=docker-nginx
 pkgver=r110.b01b4f0
 pkgrel=1
-pkgdesc="Containerized Alpine nginx"
+pkgdesc="Containerized nginx"
 arch=('any')
 license=('custom')
 url="http://www.example.com"
@@ -19,6 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  install -Dm644 nginx/docker-alpine-nginx@.service \
-    "$pkgdir/usr/lib/systemd/system/docker-alpine-nginx@.service"
+  install -Dm644 nginx/docker-nginx@.service \
+    "$pkgdir/usr/lib/systemd/system/docker-nginx@.service"
 }
