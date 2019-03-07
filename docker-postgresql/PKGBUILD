@@ -9,7 +9,7 @@ license=('custom')
 url="http://www.example.com"
 depends=('docker')
 makedepends=('git')
-source=("$pkgname::git+https://github.com/YuanModu/Dockerfile.git")
+source=("$pkgname::git+https://github.com/YuanModu/Unitfile.git")
 md5sums=('SKIP')
 
 pkgver() {
@@ -19,7 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  echo "$(pwd)"
-  install -Dm644 postgresql/docker-postgresql@.service \
+  install -Dm644 docker-postgresql@.service \
     "$pkgdir/usr/lib/systemd/system/docker-postgresql@.service"
 }
