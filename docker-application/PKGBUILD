@@ -1,9 +1,9 @@
 # Maintainer (yuan_modu): Atila Satilmis <atila.satilmis@gmail.com>
 
-pkgname=docker-wagtail
-pkgver=r70.31dfa38
+pkgname=docker-application
+pkgver=r110.b01b4f0
 pkgrel=1
-pkgdesc="Containerized wagtail"
+pkgdesc="Containerized application"
 arch=('any')
 license=('custom')
 url="http://www.example.com"
@@ -20,6 +20,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  install -Dm644 docker-wagtail@.service \
-    "$pkgdir/usr/lib/systemd/system/docker-wagtail@.service"
+  install -Dm644 docker-application@.service \
+    "$pkgdir/usr/lib/systemd/system/docker-application@.service"
 }
