@@ -1,12 +1,11 @@
 # Maintainer (yuan_modu): Atila Satilmis <atila.satilmis@gmail.com>
 
-pkgname=docker-application
+pkgname=docker-container
 pkgver=r110.b01b4f0
 pkgrel=1
-pkgdesc="Containerized application"
+pkgdesc="start/stop Docker containers"
 arch=('any')
 license=('custom')
-url="http://www.example.com"
 options=('!strip')
 depends=('docker')
 makedepends=('git')
@@ -20,6 +19,6 @@ pkgver() {
 
 package() {
   cd "$srcdir/$pkgname"
-  install -Dm644 docker-application@.service \
-    "$pkgdir/usr/lib/systemd/system/docker-application@.service"
+  install -Dm644 docker@.service \
+    "$pkgdir/usr/lib/systemd/system/docker@.service"
 }
