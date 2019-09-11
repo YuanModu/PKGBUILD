@@ -4,7 +4,7 @@
 buildarch=8
 
 pkgname=uboot-orangepi-pc2
-pkgver=2017.11
+pkgver=2019.07
 pkgrel=1
 pkgdesc="U-Boot for Orangepi PC2"
 arch=('aarch64')
@@ -14,18 +14,18 @@ backup=('boot/boot.txt' 'boot/boot.scr')
 makedepends=('bc' 'dtc' 'git')
 install=${pkgname}.install
 source=("ftp://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
-        'git+https://github.com/apritzel/arm-trusted-firmware.git#branch=allwinner'
+        'https://github.com/ARM-software/arm-trusted-firmware/archive/v2.1.tar.gz'
         '0001-ATF-set-fno-stack-protector.patch'
         'boot.txt'
         'mkscr')
-md5sums=('7848f6fd197e2c6ef2eb483dd5bd2858'
-         'SKIP'
-         '1d3b375fa978f3297d0fd3316f89e68a'
-         'c3fef77aee64903f806c4f4357e5a2ab'
+md5sums=('73434338536c7500b4302bd0a02921ed'
+         '75c8f4958fb493d9bd7a8e5a9636ec18'
+         '2d895b972dee8be2bfefb08813644e0d'
+         '2272ee7f35e7d0bf82f92f500099a320'
          '021623a04afd29ac3f368977140cfbfd')
 
 prepare() {
-  cd arm-trusted-firmware
+  cd arm-trusted-firmware-2.1
   git apply ../0001-ATF-set-fno-stack-protector.patch
 }
 
@@ -34,15 +34,15 @@ build() {
 
   cd arm-trusted-firmware
 
-  make PLAT=sun50iw1p1 DEBUG=1 bl31
-  cp build/sun50iw1p1/debug/bl31.bin ../u-boot-${pkgver/rc/-rc}
+  make PLAT=sun50i_a64 DEBUG=1 bl31
+  cp build/sun50i_a64/debug/bl31.bin ../u-boot-${pkgver/rc/-rc}
 
   cd ../u-boot-${pkgver/rc/-rc}
 
   make distclean
   make orangepi_pc2_defconfig
   echo 'CONFIG_IDENT_STRING=" Arch Linux ARM"' >> .config
-  make -j1 EXTRAVERSION=-${pkgrel}
+  make -j$(nproc) EXTRAVERSION=-${pkgrel}
 }
 
 package() {
